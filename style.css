@@ -1,0 +1,681 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f6fc;
+    color: #20233b;
+    min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    border-radius: 7px;
+    transition: .3s;
+}
+
+button:hover {
+    opacity: .88;
+    transform: translateY(-2px);
+}
+
+/* HEADER */
+
+header {
+    background: white;
+    padding: 18px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px #00000010;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: #5937d5;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #252844;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #444;
+    font-size: 14px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #5937d5;
+}
+
+.signin {
+    background: #5937d5;
+    color: white;
+    padding: 12px 22px;
+}
+
+/*    HERO SECTION
+   ROTATING ADVERTISEMENTS*/
+
+.hero {
+    min-height: 480px;
+    padding: 65px 8%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(25, 18, 55, 0.95),
+            rgba(40, 25, 85, 0.65),
+            rgba(0, 0, 0, 0.2)
+        ),
+        url("john wick.jfif");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: white;
+}
+
+.hero-content {
+    max-width: 550px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-label {
+    display: inline-block;
+    color: #ffd166;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 18px;
+    color: white;
+}
+
+.hero p {
+    line-height: 1.8;
+    margin-bottom: 25px;
+    color: #e5e0ff;
+    font-size: 16px;
+}
+
+.hero-content button {
+    background: white;
+    color: #5937d5;
+    padding: 14px 24px;
+    font-size: 14px;
+}
+
+/* HERO PREVIOUS AND NEXT BUTTONS */
+
+.hero-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+    font-size: 18px;
+}
+
+.hero-arrow.prev {
+    left: 20px;
+}
+
+.hero-arrow.next {
+    right: 20px;
+}
+
+/* HERO ADVERTISEMENT DOTS */
+
+.hero-dots {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 10px;
+
+    z-index: 3;
+}
+
+.hero-dot {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    border-radius: 50%;
+
+    background: white;
+    opacity: .5;
+}
+
+.hero-dot.active {
+    opacity: 1;
+    background: #ffd166;
+}
+
+/* SEARCH AREA */
+
+.search-area {
+    padding: 25px 6%;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: white;
+}
+
+.search-area input,
+.search-area select {
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    outline-color: #5937d5;
+    background: white;
+    max-width: 100%;
+}
+
+.search-area input {
+    flex: 1;
+    min-width: 180px;
+}
+
+/*MOVIE SECTIONS*/
+
+section.movies {
+    padding: 35px 6%;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+    gap: 10px;
+}
+
+.section-heading h2 {
+    font-size: 24px;
+}
+
+.section-heading span {
+    color: #5937d5;
+}
+
+.movie-container {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.movie {
+    cursor: pointer;
+    transition: .3s;
+    min-width: 0;
+}
+
+.movie:hover {
+    transform: translateY(-7px);
+}
+
+/*MOVIE POSTERS*/
+
+.poster {
+    height: 260px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    background: #34245e;
+}
+
+.poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: .3s;
+}
+
+.movie:hover .poster img {
+    transform: scale(1.06);
+}
+
+.poster::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        transparent 35%,
+        rgba(0, 0, 0, .85)
+    );
+    pointer-events: none;
+}
+
+.poster h3 {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 10px;
+    color: white;
+    font-size: 20px;
+    line-height: 1.1;
+    z-index: 2;
+}
+
+.category {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #ffffffd9;
+    color: #5937d5;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 10px;
+    z-index: 2;
+}
+
+.movie h4 {
+    margin: 12px 0 5px;
+    font-size: 15px;
+}
+
+.movie small {
+    color: #777;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    color: #777;
+    padding: 20px 0;
+}
+
+/*MOVIE DETAILS MODAL*/
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: #101024c9;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    z-index: 30;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.details {
+    background: white;
+    width: 850px;
+    max-width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 35% 65%;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: white;
+    color: #222;
+    font-size: 28px;
+    width: 35px;
+    height: 35px;
+    z-index: 2;
+}
+
+.detail-poster {
+    min-height: 390px;
+    padding: 25px;
+    display: flex;
+    align-items: end;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.detail-poster::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent, #111b);
+}
+
+.detail-poster h2 {
+    font-size: 35px;
+    position: relative;
+    z-index: 1;
+}
+
+.detail-info {
+    padding: 45px 30px 25px;
+}
+
+.detail-info h2 {
+    font-size: 29px;
+    margin: 12px 0;
+}
+
+.description {
+    color: #666;
+    line-height: 1.7;
+    margin: 18px 0;
+}
+
+/*MODAL BUTTONS*/
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.buttons button {
+    padding: 13px 15px;
+    font-size: 12px;
+}
+
+.watch {
+    background: #5937d5;
+    color: white;
+}
+
+.trailer {
+    background: #e9e4ff;
+    color: #5937d5;
+}
+
+.download {
+    background: #168b5b;
+    color: white;
+}
+
+.add {
+    background: #f0f0f5;
+    color: #333;
+}
+
+#mediaMessage {
+    font-size: 12px;
+    color: #777;
+    margin-top: 15px;
+}
+
+/*VIDEO PLAYER*/
+
+.video-area {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.video-area iframe,
+.video-area video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 8px;
+    background: #111;
+}
+
+#videoArea[hidden] {
+    display: none;
+}
+
+/*SIGN IN MODAL*/
+
+.form-modal {
+    position: fixed;
+    inset: 0;
+    background: #0009;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    z-index: 40;
+}
+
+.form-modal.active {
+    display: flex;
+}
+
+.form-box {
+    background: white;
+    padding: 35px;
+    width: 380px;
+    max-width: 100%;
+    border-radius: 12px;
+    position: relative;
+}
+
+.form-box h2 {
+    margin-bottom: 20px;
+}
+
+.form-box input {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    margin: 12px 0;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+}
+
+.form-box button.submit {
+    width: 100%;
+    padding: 13px;
+    background: #5937d5;
+    color: white;
+    margin-top: 10px;
+}
+
+#loginMessage {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #5937d5;
+}
+
+/*MY LIST*/
+
+#myList {
+    background: white;
+}
+
+#emptyList {
+    color: #777;
+}
+
+/*FOOTER*/
+
+footer {
+    padding: 30px;
+    background: #25213e;
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+}
+
+footer p {
+    margin-top: 10px;
+    color: #c5bfdf;
+    font-size: 13px;
+}
+
+/*TOAST NOTIFICATION */
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #25213e;
+    color: white;
+    padding: 13px 20px;
+    border-radius: 8px;
+    display: none;
+    z-index: 60;
+    max-width: 90%;
+    text-align: center;
+}
+
+/*TABLETS */
+
+@media(max-width: 950px) {
+
+    .movie-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+}
+
+/* MOBILE*/
+
+@media(max-width: 600px) {
+
+    header {
+        justify-content: center;
+    }
+
+    nav {
+        width: 100%;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 350px;
+        padding: 45px 12%;
+        background-position: center;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+
+    .hero-arrow.prev {
+        left: 8px;
+    }
+
+    .hero-arrow.next {
+        right: 8px;
+    }
+
+    .movie-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+    .poster {
+        height: 220px;
+    }
+
+    section.movies {
+        padding: 25px 5%;
+    }
+
+    .details {
+        display: block;
+    }
+
+    .detail-poster {
+        min-height: 190px;
+    }
+
+    .detail-poster h2 {
+        font-size: 27px;
+    }
+
+    .detail-info {
+        padding: 25px 18px;
+    }
+
+    .buttons button {
+        flex: 1 1 40%;
+    }
+
+}
+
+/* SMALL PHONES */
+
+@media(max-width: 360px) {
+
+    .movie-container {
+        grid-template-columns: 1fr;
+    }
+
+    .poster {
+        height: 300px;
+    }
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+    .search-area input {
+        min-width: 100%;
+    }
+
+}

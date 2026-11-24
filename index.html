@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gallexy movies</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!--Header section-->
+
+<header>
+
+    <div class="logo">
+        Gallexy <span>movies</span>
+    </div>
+
+    <nav>
+        <a href="#hero">Home</a>
+        <a href="#movies">Movies</a>
+        <a href="#series">Series</a>
+        <a href="#cartoons">Cartoons</a>
+        <a href="#myList">My List</a>
+    </nav>
+
+    <button class="signin" onclick="openForm()">
+        Sign In
+    </button>
+
+</header>
+
+<!--Hero section-->
+
+<section class="hero" id="hero">
+
+    <div class="hero-content">
+
+        <span id="heroLabel">
+            FEATURED MOVIE
+        </span>
+
+        <h1 id="heroTitle">
+            John Wick
+        </h1>
+
+        <p id="heroDescription">
+            Discover an exciting action movie experience.
+        </p>
+
+        <button onclick="openHeroMovie()">
+            ▶ Watch Now
+        </button>
+
+    </div>
+
+
+    <!-- PREVIOUS ADVERTISEMENT -->
+
+    <button
+        class="hero-arrow prev"
+        onclick="previousHero()"
+        aria-label="Previous advertisement">
+
+        &#10094;
+
+    </button>
+
+
+    <!-- NEXT ADVERTISEMENT -->
+
+    <button
+        class="hero-arrow next"
+        onclick="nextHero()"
+        aria-label="Next advertisement">
+
+        &#10095;
+
+    </button>
+
+
+    <!-- ADVERTISEMENT DOTS -->
+
+    <div
+        class="hero-dots"
+        id="heroDots">
+
+    </div>
+
+</section>
+
+
+<!--Seearch and filter-->
+
+<div class="search-area">
+
+    <input
+        type="search"
+        id="search"
+        placeholder="Search for movies and series..."
+    >
+
+    <select id="genre">
+
+        <option value="all">All Genres</option>
+
+        <option value="Action">Action</option>
+
+        <option value="Adventure">Adventure</option>
+
+        <option value="Comedy">Comedy</option>
+
+        <option value="Drama">Drama</option>
+
+        <option value="Horror">Horror</option>
+
+        <option value="Animation">Animation</option>
+
+    </select>
+
+
+    <select id="type">
+
+        <option value="all">All Categories</option>
+
+        <option value="Movie">Movie</option>
+
+        <option value="Series">Series</option>
+
+        <option value="Cartoon">Cartoon</option>
+
+    </select>
+
+</div>
+
+
+<!--Movies-->
+
+<section class="movies" id="movies">
+
+    <div class="section-heading">
+
+        <h2>Popular Movies</h2>
+
+        <span>Explore All </span>
+
+    </div>
+
+    <div
+        class="movie-container"
+        id="movieContainer">
+
+    </div>
+
+</section>
+
+
+<!--SERIES-->
+
+<section class="movies" id="series">
+
+    <div class="section-heading">
+
+        <h2>Popular Series</h2>
+
+        <span>Explore All </span>
+
+    </div>
+
+    <div
+        class="movie-container"
+        id="seriesContainer">
+
+    </div>
+
+</section>
+
+
+<!--CARTOONS-->
+
+<section class="movies" id="cartoons">
+
+    <div class="section-heading">
+
+        <h2>Cartoons</h2>
+
+        <span>Explore All </span>
+
+    </div>
+
+    <div
+        class="movie-container"
+        id="cartoonContainer">
+
+    </div>
+
+</section>
+
+
+<!--MY LIST-->
+
+<section class="movies" id="myList">
+
+    <div class="section-heading">
+
+        <h2>My List</h2>
+
+        <span id="savedCount">
+            0 saved
+        </span>
+
+    </div>
+
+    <div
+        class="movie-container"
+        id="savedContainer">
+
+    </div>
+
+    <p id="emptyList">
+        You have not saved any movies yet.
+    </p>
+
+</section>
+
+
+<!--FOOTER-->
+
+<footer>
+
+    <h2>Gallexy movies</h2>
+
+    <p>Your entertainment starts here.</p>
+
+    <p>&copy; 2026 Gallexy movies. All rights reserved</p>
+
+</footer>
+
+
+<!--MOVIE DETAILS MODAL-->
+
+<div class="modal" id="movieModal">
+
+    <div class="details">
+
+        <button
+            class="close"
+            onclick="closeMovie()">
+
+            ×
+
+        </button>
+
+
+        <div
+            class="detail-poster"
+            id="detailPoster">
+
+            <h2 id="detailPosterTitle"></h2>
+
+        </div>
+
+
+        <div class="detail-info">
+
+            <small id="detailType"></small>
+
+            <h2 id="detailTitle"></h2>
+
+            <p id="detailMeta"></p>
+
+            <p
+                class="description"
+                id="detailDescription">
+
+            </p>
+
+
+            <!-- MOVIE BUTTONS -->
+
+            <div class="buttons">
+
+                <button
+                    class="watch"
+                    onclick="watchNow()">
+
+                    ▶ Watch Now
+
+                </button>
+
+
+                <button
+                    class="trailer"
+                    onclick="watchTrailer()">
+
+                    ▷ Watch Trailer
+
+                </button>
+
+
+                <button
+                    class="download"
+                    onclick="downloadMovie()">
+
+                    ↓ Download
+
+                </button>
+
+
+                <button
+                    class="add"
+                    onclick="toggleList()">
+
+                    ＋ Add to My List
+
+                </button>
+
+            </div>
+
+
+            <p id="mediaMessage">
+                Media availability depends on the title.
+            </p>
+
+
+            <!-- VIDEO PLAYER -->
+
+            <div
+                class="video-area"
+                id="videoArea"
+                hidden>
+
+                <iframe
+                    id="trailerFrame"
+                    title="Movie trailer"
+                    allowfullscreen>
+
+                </iframe>
+
+
+                <video
+                    id="moviePlayer"
+                    controls
+                    hidden>
+
+                </video>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!--SIGN IN MODAL-->
+
+<div class="form-modal" id="formModal">
+
+    <form
+        class="form-box"
+        id="loginForm">
+
+
+        <button
+            type="button"
+            class="close"
+            onclick="closeForm()">
+
+            ×
+
+        </button>
+
+
+        <h2>Welcome Back</h2>
+
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email address"
+            required
+        >
+
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            minlength="4"
+            required
+        >
+
+
+        <button
+            class="submit"
+            type="submit">
+
+            Sign In
+
+        </button>
+
+
+        <p id="loginMessage"></p>
+
+    </form>
+
+</div>
+
+
+<!--TOAST NOTIFICATION-->
+
+<div
+    class="toast"
+    id="toast">
+
+</div>
+
+
+</body>
+
+</html>
